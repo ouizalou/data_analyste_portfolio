@@ -8,7 +8,7 @@ where c.revenu_annuel > 112500.00
 order by c.revenu_annuel desc;
 
 
-  -- rechercher tous les contrats d'un clients donné
+  -- 🔍 rechercher tous les contrats d'un clients donné
 
 select c.contrat_id,c2.nom ,c2.prenom ,c2.revenu_annuel ,c.date_signature,c.statut,c.date_cloture
 from contrats c 
