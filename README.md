@@ -22,5 +22,5 @@ Cette base de données modélise les données essentielles liées aux contrats d
 | `beneficiaires`           | Personnes désignées en cas de décès |
 
 # 🖼️ Schéma relationnel (Mermaid) 
+![diagram_BDD_Assu_Vie](https://github.com/user-attachments/assets/c58d6d20-88a1-4b2f-bd08-374c2aa00670)
 
-https://www.mermaidchart.com/app/projects/506d24a8-e9c4-457b-b08f-eed1e73b1fd7/diagrams/19704dba-d7c7-4f45-b056-4156892d3aa2/share/invite/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkb2N1bWVudElEIjoiMTk3MDRkYmEtZDdjNy00ZjQ1LWIwNTYtNDE1Njg5MmQzYWEyIiwiYWNjZXNzIjoiRWRpdCIsImlhdCI6MTc1MDg1MTI2MH0.3sGaOEKVR9orxc4tDua60037Qphz_xhPrYvDcd4MNk0
