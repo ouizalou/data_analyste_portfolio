@@ -7,7 +7,6 @@ use assurance_vie;
  * Usage : Assurer une traçabilité complète de la vie du contrat dès l’insertion.
  */
 
-
 delimiter //
 
 create trigger tr_insert_statut_contrat 
