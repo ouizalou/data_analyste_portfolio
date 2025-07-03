@@ -1,6 +1,13 @@
 use assurance_vie;
 
--- procedure pour afficher les contrats d'un clients donné
+/*
+ * Procédure : get_contrats_client
+ * But métier : Récupérer la liste des contrats associés à un client donné,
+ * incluant les informations sur le contrat, le client, l’intermédiaire,
+ * les bénéficiaires et le total investi.
+ * Usage : Permettre au gestionnaire ou conseiller d’avoir une vision
+ * complète des contrats et des montants investis par client.
+ */
 
 DELIMITER //
 create procedure get_contrats_client(in p_client_id int)
@@ -27,7 +34,13 @@ call get_contrats_client(9);
 call get_contrats_client(34);
 call get_contrats_client(23);
 
--- procedure pour afficher la liste des sinistres pour un contrat donné
+/*
+ * Procédure : get_sinistre_contrat
+ * But métier : Lister tous les sinistres enregistrés pour un contrat spécifique,
+ * avec les détails sur le sinistre, le client, l’intermédiaire, et le produit.
+ * Usage : Faciliter le traitement des sinistres et le suivi des incidents
+ * liés à un contrat d’assurance vie.
+ */
 
 delimiter 
 //
@@ -52,7 +65,12 @@ call get_sinistre_contrat(165);
 call get_sinistre_contrat(72);
 
 
---  procedure pour retracer l’historique des statuts d’un contrat
+/*
+ * Procédure : get_historique_statuts_contrat
+ * But métier : Retracer l’historique des changements de statut d’un contrat donné.
+ * Usage : Suivi et traçabilité des évolutions de statut pour la gestion contractuelle
+ * et la conformité réglementaire.
+ */
 
 delimiter //
 create procedure get_historique_statuts_contrat(in p_contrat_id int)
@@ -70,8 +88,12 @@ call get_historique_statuts_contrat(23);
 call get_historique_statuts_contrat(84);
 call get_historique_statuts_contrat(64);
 
---  procedure pour retracer  l'historique des statuts de tous les contrats d'un client donné
-
+/*
+ * Procédure : get_historique_statuts_contrat_client
+ * But métier : Retracer l’historique des statuts de tous les contrats d’un client donné.
+ * Usage : Fournir une vue complète de l’évolution contractuelle client,
+ * utile pour les audits et la gestion de la relation client.
+ */
 
 delimiter //
 create procedure get_historique_statuts_contrat_client(in p_client_id int)
@@ -91,12 +113,17 @@ delimiter ;
 call get_historique_statuts_contrat_client(23);
 
 
-
---  procedure pour afficher l'evolution d'une valeur d'un contrat dans le temps
+/*
+ * Procédure : get_valeurs_contrat
+ * But métier : Afficher l’évolution dans le temps de la valeur d’un contrat,
+ * en intégrant les opérations financières associées (versements, retraits, etc.).
+ * Usage : Suivi de la performance et de la valeur actualisée du contrat
+ * pour le gestionnaire et le client.
+ */
 
 
 delimiter //
-
+	
 create procedure get_valeurs_contrat(in p_contrat_id int)
 begin
 	select c.contrat_id,c.capital_initial,
