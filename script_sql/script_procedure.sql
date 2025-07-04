@@ -197,4 +197,67 @@ delimiter
 
 call delete_sinistre(31);
 
+/*
+ * Procédure : add_sinistre
+ * But métier : Ajouter un nouveau sinistre à un contrat donné,
+ * avec vérification de l’existence du contrat .
+ * Usage : Permettre aux gestionnaires de déclarer un sinistre en base,
+ * tout en assurant la traçabilité et l’intégrité des données.
+ */
+
+delimiter 
+//
+create procedure insert_sinistre(
+	IN p_contrat_id INT,
+    IN p_date_sinistre DATE,
+    IN p_type_sinistre ENUM('deces', 'versement'),
+    IN p_montant DECIMAL(12,2),
+    IN p_description TEXT
+)
+begin
+	if exists 
+		(select 1 from contrats where contrat_id=p_contrat_id)
+	then
+		insert into sinistres (contrat_id,date_sinistre,type_sinistre,montant,description)
+		values(p_contrat_id,p_date_sinistre,p_type_sinistre,p_montant,p_description);
+	else 
+		signal sqlstate '45000' 
+		set MESSAGE_TEXT = 'Le contrat_id spécifié n''existe pas.';
+	end if;
+end
+//
+delimiter ;
+		
+
+call insert_sinistre(125,'2025-07-04','deces',50000.00, 
+					'Décès de l’assuré, procédure de règlement engagée.');
+
+/*
+ * Procédure : delete_sinistre
+ * But métier : Supprimer un sinistre, ce qui déclenche automatiquement
+ * l’audit via le trigger `tr_journaliser_suppression_sinistre`.
+ * Usage : Correction d’erreurs ou nettoyage, tout en assurant la traçabilité.
+ */
+
+
+delimiter
+//
+
+create procedure delete_sinistre(in p_sinistre_id int)
+begin
+	if not exists(select 1 from sinistres where sinistre_id=p_sinistre_id)
+	then
+		signal sqlstate '45000'
+		set MESSAGE_TEXT = 'Le sinistre spécifié n’existe pas.';
+	end if;
+	delete from sinistres where sinistre_id=p_sinistre_id;
+end
+//
+delimiter
+
+call delete_sinistre(31);
+
+end
+
+
 

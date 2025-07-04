@@ -101,3 +101,16 @@ CREATE TABLE sinistres (
     description TEXT,
     FOREIGN KEY (contrat_id) REFERENCES contrats(contrat_id)
 );
+-- tables alertes_clients
+
+CREATE TABLE IF NOT EXISTS alertes_clients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    age INT,
+    contrat_id INT,
+    date_alerte DATE,
+    message TEXT,
+    statut VARCHAR(20) DEFAULT 'nouvelle'
+);
